@@ -1,15 +1,17 @@
-# 🚀 Welcome to your new awesome project!
+# Handlebars Example
 
-This project has been created using **webpack scaffold**, you can now run
+A small example generating a webpage that utilises Handlebars to demonstrate the
+usage of javascript to dynamically load webpage data.
+
+## Requirements
+
+- yarn (or npm)
+
+## Usage
 
 ```
-npm run build
-```
-
-or
-
-```
+yarn install
 yarn build
 ```
 
-to bundle your application
+Your page data will be generated to `dist/`
