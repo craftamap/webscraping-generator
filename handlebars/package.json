@@ -1,0 +1,36 @@
+{
+  "name": "my-webpack-project",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@webpack-cli/init": "^1.0.3",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "css-loader": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "handlebars-loader": "^1.7.1",
+    "html-webpack-plugin": "^4.5.0",
+    "html-webpack-root-plugin": "^0.10.0",
+    "mini-css-extract-plugin": "^1.2.1",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.0.5",
+    "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^5.0.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
+  },
+  "description": "My webpack project",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "fontsource-dancing-script": "^3.0.5",
+    "fontsource-lato": "^3.0.9",
+    "fontsource-satisfy": "^3.0.9",
+    "handlebars": "^4.7.6",
+    "jquery": "^3.5.1"
+  }
+}
