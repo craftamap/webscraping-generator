@@ -6,6 +6,7 @@ import os
 import random
 from pathlib import Path
 import json
+import logging
 from pydantic import BaseModel
 
 class User(BaseModel):
@@ -129,7 +130,7 @@ def generate_profiles(users: typing.List[User]) -> typing.Dict[str, str]:
         }
     """
     holy_user = random.choice(users)
-    print("HOLY USER: ",  holy_user)
+    logging.warning(f"HOLY USER: {holy_user} ")
     profiles = {}
     for user in users:
         doc, tag, text = yattag.Doc().tagtext()
@@ -185,19 +186,41 @@ class EnhancedJSONEncoder(json.JSONEncoder):
 
 
 def main():
+    logging.basicConfig(level=logging.INFO)
+    logging.info("# Generating fake user data html pages")
+    logging.info("Creating required directories...")
     Path("dist").mkdir(exist_ok=True)
     Path("dist/users").mkdir(exist_ok=True)
+    logging.info("Done!")
+    logging.info("Fetching users...")
     users = get_users()
-    overview_pages = generate_overview(users)
+    logging.info("Done!")
+    logging.info("Dumping users...")
     with open("dist/users.json", "w") as output:
         json.dump(users, output, cls=EnhancedJSONEncoder)
+    logging.info("Done! dist/users.json")
+    logging.info("Generating overview pages")
+    overview_pages = generate_overview(users)
+    logging.info("Done!")
+    logging.info("Writing overview pages")
     for idx, overview_page in overview_pages.items():
         with open("dist/"+idx+".html", "w") as output:
             output.write(overview_page)
+            logging.info("  writing "+ "dist/"+idx+".html")
+        if idx == "1":
+            with open("dist/index.html", "w") as output:
+                output.write(overview_page)
+                logging.info("  writing "+ "dist/index.html")
+    logging.info("Done!")
+    logging.info("Generating user pages")
     profiles = generate_profiles(users)
+    logging.info("Done!")
+    logging.info("Writing user pages")
     for idx, overview_page in profiles.items():
         with open("dist/users/"+idx+".html", "w") as output:
             output.write(overview_page)
+            logging.info("  writing "+ "dist/users/"+idx+".html")
+    logging.info("Done!")
 
 
 if __name__ == "__main__":
